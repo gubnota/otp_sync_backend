@@ -1,0 +1,13 @@
+services:
+  otp_sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: otp_sync:1.0.0
+    ports:
+      - "9374:9374"
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./private.key:/app/private.key:ro
+      - ./cert.crt:/app/cert.crt:ro
+    restart: unless-stopped
